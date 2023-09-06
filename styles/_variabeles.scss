@@ -1,0 +1,36 @@
+// Основные цвета
+$bgColor: #6725a8;
+$white: #fff;
+$bgSmooky: #f6f6fa;
+$black: #000;
+$orange: #f55123;
+$green: #0cb477;
+$magenta: #cb11ab;
+$darkOrange: #ff3b30;
+$gray: #a0a0a4;
+$bgSmookyDark: #f0ecf4;
+
+// Шрифты
+@font-face {
+  font-family: "Segoe UI";
+  src: url("../fonts/SegoeUI.woff") format("woff"),
+    url("../fonts/SegoeUI.eot") format("embedded-opentype");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Segoe UI";
+  src: url("../fonts/SegoeUI-SemiBold.woff") format("woff"),
+    url("../fonts/SegoeUI-SemiBold.eot") format("embedded-opentype");
+  font-style: normal;
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Segoe UI";
+  src: url("../fonts/SegoeUI-Bold.woff") format("woff"),
+    url("../fonts/SegoeUI-Bold.eot") format("embedded-opentype");
+  font-style: normal;
+  font-weight: 700;
+}
