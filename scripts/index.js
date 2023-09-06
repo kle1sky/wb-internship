@@ -858,7 +858,7 @@ const formValidation = () => {
     item.classList.remove('error');
   })
 
-  const nameRegex = /^[A-Za-z\s]+$/;
+  const nameRegex = /^[А-Яа-я\s]+$/;
   const emailRegex = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
 
   if (!nameRegex.test(name.value) || name.value === "") {
