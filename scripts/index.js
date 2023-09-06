@@ -20,7 +20,7 @@ let cartArray = [{
   isSelected: false,
   quantity: 1,
   shipping: [{
-    amount: 10,
+    amount: 2,
     date: "2023-02-05"
   }]
 }, {
@@ -43,9 +43,14 @@ let cartArray = [{
   isSelected: false,
   quantity: 200,
   shipping: [{
-    amount: 10,
-    date: "2023-02-05"
-  }]
+      amount: 184,
+      date: "2023-02-05"
+    },
+    {
+      amount: 16,
+      date: "2023-02-07"
+    }
+  ]
 }, {
   img: './img/item3.webp',
   name: 'Карандаши цветные Faber-Castell "Замок", набор 24 цвета, заточенные, шестигранные, Faber-Castell',
@@ -65,14 +70,9 @@ let cartArray = [{
   isSelected: false,
   quantity: 2,
   shipping: [{
-      amount: 184,
-      date: "2023-02-05"
-    },
-    {
-      amount: 16,
-      date: "2023-02-07"
-    }
-  ]
+    amount: 2,
+    date: "2023-02-05"
+  }, ]
 }]
 
 let missingArray = [{
@@ -327,7 +327,6 @@ const templateTask = (item) => {
       cartArray[index].isSelected = !cartArray[index].isSelected;
       checkAll() ? checkboxForAll.checked = true : checkboxForAll.checked = false;
       renderTasks();
-      renderShipping()
     })
   }
 
@@ -346,7 +345,6 @@ const templateTask = (item) => {
         return;
       }
       cartArray[index].quantity += 1;
-
       renderTasks();
     })
   }
@@ -376,6 +374,7 @@ const renderTasks = () => {
   });
   totalSum()
   itemsAmmount();
+  renderShipping()
 }
 
 //Функция чтобы отметить все товары
@@ -384,7 +383,6 @@ const markAll = () => {
     checkboxForAll.checked ? item.isSelected = true : item.isSelected = false
   });
   renderTasks();
-  renderShipping()
 }
 
 //Функция по подсчету итоговой суммы
@@ -758,15 +756,9 @@ const itemsAmmount = () => {
   span.innerHTML = ammount;
 }
 
-const cartShippingTemplate = (item) => {
-  if (item.isSelected) {
-
-  }
-}
-
-const cartShipping = () => {
-
-}
+const quantityOrAmount = item => item.quantity === 1 ? '' :
+  item.quantity > item.amount ? item.amount :
+  item.quantity;
 
 const renderShipping = () => {
   const rowShipping = document.querySelector('.row-date');
@@ -817,7 +809,7 @@ const renderShipping = () => {
         const infoTemplate = (item) => `
           <div class="row__photo">
             <img class="row__photo" src="${item.img}" alt="item" />
-            <span class="row__quantity row__quantity-last">${item.quantity > 1 ? item.quantity : ''}</span>
+            <span class="row__quantity row__quantity-last">${quantityOrAmount(item)}</span>
           </div>
         `;
         rowPhotoDiv.innerHTML = infoTemplate(el);
