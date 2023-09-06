@@ -30,8 +30,8 @@ let cartArray = [{
     color: "прозрачный",
     size: false,
   },
-  price: 1150000,
-  sale: 1050000,
+  price: 11500.235,
+  sale: 10500.235,
   left: 999,
   isFavorite: false,
   seller: {
@@ -41,7 +41,7 @@ let cartArray = [{
   },
   stock: 'Коледино WB',
   isSelected: false,
-  quantity: 1,
+  quantity: 200,
   shipping: [{
     amount: 10,
     date: "2023-02-05"
@@ -52,9 +52,9 @@ let cartArray = [{
   feature: false,
   color: false,
   size: false,
-  price: 9500,
-  sale: 4940,
-  left: 100,
+  price: 475,
+  sale: 247,
+  left: 2,
   isFavorite: false,
   seller: {
     name: 'OOO Вайлдберриз',
@@ -63,7 +63,7 @@ let cartArray = [{
   },
   stock: 'Коледино WB',
   isSelected: false,
-  quantity: 3,
+  quantity: 2,
   shipping: [{
       amount: 184,
       date: "2023-02-05"
@@ -234,7 +234,7 @@ const templateTask = (item) => {
                     <div class="quantity__wrapper">
                       <button ${item.quantity <= 1 ? "disabled" : ""} class="quantity__button-minus">−</button>
                       <span class="quantity__value">${item.quantity}</span>
-                      <button ${item.left <= 0 ? "disabled" : ""} class="quantity__button-plus">+</button>
+                      <button ${item.quantity === item.left ? "disabled" : ""} class="quantity__button-plus">+</button>
                     </div>
                     <span class="${item.left < 4 ? "quantity__last" : "quantity__last quantity__none"}">Осталось ${item.left} шт.</span>
                     <div class="quantity__icons">
@@ -257,8 +257,8 @@ const templateTask = (item) => {
                   </div>
 
                   <div class="price">
-                  <span class="${item.sale.toString().length > 6 ? "price__sale smaller" : "price__sale"}">${numberWithSpaces(item.sale * item.quantity)} <p>сом</p></span>
-                  <span class="price__text">${numberWithSpaces(item.price * item.quantity)} сом </span>
+                  <span class="${item.sale.toString().length > 6 ? "price__sale smaller" : "price__sale"}">${numberWithSpaces(Math.ceil(item.sale * item.quantity))} <p>сом</p></span>
+                  <span class="price__text">${numberWithSpaces(Math.ceil(item.price * item.quantity))} сом </span>
                   
                   <div class="price__hover">
 
@@ -338,7 +338,6 @@ const templateTask = (item) => {
         return;
       }
       cartArray[index].quantity -= 1;
-      cartArray[index].left += 1;
       renderTasks();
     })
 
@@ -347,7 +346,6 @@ const templateTask = (item) => {
         return;
       }
       cartArray[index].quantity += 1;
-      cartArray[index].left -= 1;
 
       renderTasks();
     })
