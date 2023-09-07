@@ -882,6 +882,12 @@ const incorrectForm = (item) => {
   })
 }
 
+const phone = document.querySelector('.form__input-phone');
+phone.addEventListener('input', (e) => {
+  phone.value = formatPhoneNumber(e.target.value);
+})
+
+
 function formatPhoneNumber(phoneNumber) {
   const cleaned = phoneNumber.replace(/\D/g, '');
   const match = cleaned.match(/^(\d{1})(\d{3})(\d{3})(\d{2})(\d{2})$/);
