@@ -393,7 +393,7 @@ const totalPrice = () => {
       sum += item.price * item.quantity
     }
   })
-  return sum;
+  return Math.ceil(sum);
 }
 
 //Функция по подсчету итоговой скидки
@@ -404,7 +404,7 @@ const totalSale = () => {
       sum += item.sale * item.quantity
     }
   })
-  return sum;
+  return Math.ceil(sum);
 }
 
 //Функция по подсчету количества товаров
