@@ -851,6 +851,7 @@ const formValidation = () => {
   })
 
   const nameRegex = /^[А-Яа-я\s]+$/;
+  const phoneRegex = /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/;
   const emailRegex = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
 
   if (!nameRegex.test(name.value) || name.value === "") {
@@ -861,7 +862,7 @@ const formValidation = () => {
     incorrectForm(surname)
   }
 
-  if (phone.value === "" || phone.value.length < 12) {
+  if (phone.value === "" || !phoneRegex.test(phone.value)) {
     incorrectForm(phone)
   }
 
