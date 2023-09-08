@@ -221,12 +221,12 @@ const templateTask = (item) => {
                   <span class="description__text-seller"
                     >${item.seller.name}
                     <img src="./img/icons/info.svg" alt="info-icon" class="info-icon" />
-                  </span>
-                  <div class="description__info">
+                    <div class="description__info">
                     <span class="description__text-name">${item.seller.name.toUpperCase()}</span>
                     <span class="description__text-ogr">ОГРН: ${item.seller.ogrn}</span>
                     <span class="description__text-adress">${item.seller.adress}</span>
                   </div>
+                  </span>
                   </div>
                 </div>
 
@@ -283,10 +283,6 @@ const templateTask = (item) => {
   const quantity = li.querySelector(".quantity__wrapper");
   const minus = quantity.querySelector(".quantity__button-minus");
   const plus = quantity.querySelector(".quantity__button-plus");
-  const info = li.querySelector(".description__info");
-  const infoIcon = li.querySelector(".info-icon");
-  const priceSale = li.querySelector(".price__text");
-  const priceHover = li.querySelector(".price__hover");
 
   //Добавление в избранное
   favorite.addEventListener('click', () => {
@@ -301,24 +297,6 @@ const templateTask = (item) => {
       list.remove();
     }
     renderTasks();
-  })
-
-  //Наведение на цену
-  priceSale.addEventListener('mouseover', () => {
-    priceHover.classList.add('active');
-  })
-
-  priceSale.addEventListener('mouseout', () => {
-    priceHover.classList.remove('active');
-  })
-
-  //Наведение на информацию
-  infoIcon.addEventListener('mouseover', () => {
-    info.classList.add('active');
-  })
-
-  infoIcon.addEventListener('mouseout', () => {
-    info.classList.remove('active');
   })
 
   //Отмечаем выбранный товар
@@ -729,8 +707,12 @@ const templateMissing = (item) => {
   const index = missingArray.indexOf(item);
 
   trashbin.addEventListener('click', () => {
+    const heading = document.querySelector('.missing__heading')
+    const span = heading.querySelector('span');
+
     missingArray.splice(index, 1)
-    li.remove()
+    span.innerHTML = missingArray.length
+    missingArray.length === 0 ? missing.innerHTML = '' : renderMissing();
   })
 
   favorite.addEventListener('click', () => {
